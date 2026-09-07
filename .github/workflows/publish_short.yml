@@ -63,7 +63,4 @@ jobs:
         if: always()
         run: |
           git config user.name "shorts-bot"
-          git config user.email "actions@github.com"
-          git add topics_used.json
-          git diff --staged --quiet || git commit -m "Actualizar temas usados [skip ci]"
-          git push
+          git config user.email
