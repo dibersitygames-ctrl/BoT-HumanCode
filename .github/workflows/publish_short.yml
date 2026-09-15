@@ -64,6 +64,12 @@ jobs:
         run: |
           git config user.name "shorts-bot"
           git config user.email "actions@github.com"
+          git fetch origin main
           git add topics_used.json
-          git diff --staged --quiet || git commit -m "Actualizar temas usados [skip ci]"
-          git push
+          if git diff --staged --quiet; then
+            echo "No hay cambios que guardar."
+            exit 0
+          fi
+          git commit -m "Actualizar temas usados [skip ci]"
+          git rebase origin/main
+          git push origin HEAD:main
